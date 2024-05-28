@@ -1,7 +1,6 @@
 package com.example.minerz;
 
-import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -10,13 +9,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import java.util.HashMap;
@@ -39,14 +38,20 @@ public class LandController {
     int rowBef;
     int colBef;
 
+    int rowBench;
+    int colBench;
+
     int partitionIndex = 0;
 
-    GridPane thirdTable = new GridPane();
-    GridPane secondTable = new GridPane();
+    GridPane thirdGridPane;
+    GridPane secondTable;
 
     Map<String, Integer> partitionMap = new HashMap<>();
+    int[][] secondTableArray;
+    int[][] thirdTableArray;
 
 
+    Color lighGreenBench = Color.rgb(144, 238, 144, 0.5);
     Color lighterBrownGreen = Color.rgb(204, 204, 0);
     Color lightBrownGreen = Color.rgb(173, 143, 96);
     Color brownGreen = Color.rgb(102, 102, 0);
@@ -85,6 +90,8 @@ public class LandController {
     }
 
     public void createLand(ActionEvent actionEvent) {
+        secondTable = new GridPane();
+        thirdGridPane = new GridPane();
         int rows;
         int cols;
         try {
@@ -98,6 +105,8 @@ public class LandController {
 
             rowBef = rows;
             colBef = cols;
+            rowBench = rows;
+            colBench = cols;
 
         } catch (NumberFormatException e) {
             showAlert("Invalid input", "Please enter valid numbers for rows and columns.");
@@ -125,8 +134,8 @@ public class LandController {
         vboxBottom.getChildren().clear();
         vboxBottom.getChildren().add(gridPane);
         drillData();
-         secondTable = createSecondTable(rows, cols);
-        lerchGrossMan( rows, cols);
+        secondTable = createSecondTable(rows, cols);
+        lerchGrossMan(rows, cols);
 
         Scene scene = borderPane.getScene();
         if (scene != null) {
@@ -144,7 +153,6 @@ public class LandController {
     private void drillData() {
 
 
-
         if (gridPane == null || gridPane.getChildren().isEmpty()) return;
 
         int rows;
@@ -160,9 +168,9 @@ public class LandController {
             return;
         }
 
-        partition = (int) Math.floor(rows/7.0);
+        partition = (int) Math.floor(rows / 7.0);
         System.out.println("remaining partition: " + partition);
-        remaining = rows-(partition*7);
+        remaining = rows - (partition * 7);
         System.out.println("remaining rows with no partition:" + remaining);
 
         partitionRows[partitionMap.get("LIGHTESTBROWNGREEN")] = partition;
@@ -182,8 +190,8 @@ public class LandController {
 //        System.out.println("DDDG partition: " + partitionRows[6]);
 
 
-        while(remaining != 0){
-            if(partitionIndex == 6) partitionIndex = 0;
+        while (remaining != 0) {
+            if (partitionIndex == 6) partitionIndex = 0;
             partitionRows[partitionIndex] = partitionRows[partitionIndex] + 1;
             partitionIndex++;
             remaining--;
@@ -309,7 +317,6 @@ public class LandController {
     }
 
 
-
     public GridPane createSecondTable(int rows, int cols) {
         GridPane secondGridPane = new GridPane();
         secondGridPane.setHgap(TILE_MARGIN);
@@ -324,7 +331,7 @@ public class LandController {
         for (int j = 0; j < cols; j++) {
             int cumulativeSum = 0;
             for (int i = 0; i < rows; i++) {
-                Rectangle originalTile = (Rectangle) gridPane.getChildren().get(j + i * cols);
+                Rectangle originalTile = (Rectangle) gridPane.getChildren().get(j + (i * cols));
                 int value = Integer.parseInt(originalTile.getAccessibleText());
 
                 cumulativeSum += value;
@@ -349,33 +356,39 @@ public class LandController {
         secondTableLabel.setFont(Font.font("Arial", FontWeight.BOLD, 20));
         secondTableLabel.setPadding(new Insets(10, 0, 10, 0));
         vboxBottom.getChildren().addAll(secondTableLabel, secondGridPane);
-        return  secondGridPane;
+        return secondGridPane;
 
     }
 
     public void lerchGrossMan(int rows, int cols) {
-        int[][] thirdTableToEvaluate = new int[rows + 1][cols + 1];
+        int rowArrays = rows + 1;
+        int colArrays = cols + 1;
+        secondTableArray = new int[rowArrays][colArrays];
+        thirdTableArray = new int[rowArrays][colArrays];
+
         int rowOffset = 1;
         int colOffset = 1;
-
-        for(int i = 0; i < cols + 1; i ++){
-            thirdTableToEvaluate[0][i] = 0;
+        // row
+        for (int i = 0; i < colArrays; i++) {
+            secondTableArray[0][i] = 0;
         }
 
-        for(int j = 0; j < rows + 1; j++){
+        // col
+        for (int j = 0; j < rowArrays; j++) {
             for (Node node : secondTable.getChildren()) {
                 int row = GridPane.getRowIndex(node);
                 int col = GridPane.getColumnIndex(node);
 
-                if(col == 0 && row == j){
+                // for first col
+                if (col == 0 && row == j) {
                     if (node instanceof Rectangle) {
                         Rectangle rectangle = (Rectangle) node;
                         int val = Integer.parseInt(rectangle.getAccessibleText());
-                        thirdTableToEvaluate[j+1][0] = val;
+                        secondTableArray[j + 1][0] = val;
                     } else if (node instanceof Text) {
                         Text text = (Text) node;
                         int val = Integer.parseInt(text.getText());
-                        thirdTableToEvaluate[j+1][0] = val;
+                        secondTableArray[j + 1][0] = val;
                     }
 
                 }
@@ -383,6 +396,7 @@ public class LandController {
             }
         }
 
+        // the orig second table's value
         for (Node node : secondTable.getChildren()) {
             int row = GridPane.getRowIndex(node);
             int col = GridPane.getColumnIndex(node);
@@ -390,76 +404,109 @@ public class LandController {
             if (node instanceof Rectangle) {
                 Rectangle rectangle = (Rectangle) node;
                 int val = Integer.parseInt(rectangle.getAccessibleText());
-                thirdTableToEvaluate[row + rowOffset][col + colOffset] = val;
+                secondTableArray[row + rowOffset][col + colOffset] = val;
             } else if (node instanceof Text) {
                 Text text = (Text) node;
                 int val = Integer.parseInt(text.getText());
-                thirdTableToEvaluate[row + rowOffset][col + colOffset] = val;
+                secondTableArray[row + rowOffset][col + colOffset] = val;
             }
 
             finalRow = row;
             finalCol = col;
         }
-        // System.out.println("The final row and col: " + finalRow + " " + finalCol + "the final value which should -52: " + thirdTableToEvaluate[0][0]);
-        // sakto najud
 
-        for (int i = 0; i < rows + 1 ; i++) {
-            for (int j = 0; j < cols + 1; j++) {
-                System.out.print(thirdTableToEvaluate[i][j] + " ");
+        // System.out.println("The final row and col: " + finalRow + " " + finalCol + "the final value which should -52 with 55x60 grid: " + secondTableArray[finalRow][finalCol]);
+        // sakto najud
+        System.out.println("Second table: ");
+        for (int i = 0; i < rowArrays; i++) {
+            for (int j = 0; j < colArrays; j++) {
+                System.out.print(secondTableArray[i][j] + " ");
             }
             System.out.println();
         }
 
-        // now do currValue + the max 3 of it's left for the thirdtable
+        //now do currValue + the max 3 of it's left for and store it to the array for the thirdtable
+        for (int i = 0; i < rowArrays; i++) {
+            thirdTableArray[i][0] = secondTableArray[i][0];
+        }
 
-        double availableWidth = vboxBottom.getWidth() - (cols + 1) * TILE_MARGIN - 2 * HORIZONTAL_MARGIN;
-        double availableHeight = vboxBottom.getHeight() - (rows + 1) * TILE_MARGIN - 2 * VERTICAL_MARGIN;
-
-        double tileWidth = availableWidth / cols;
-        double tileHeight = availableHeight / rows;
-
-        for (int j = 0; j < cols; j++) {
-            int cumulativeSum = 0;
-            for (int i = 0; i < rows; i++) {
-                Rectangle originalTile = (Rectangle) secondTable.getChildren().get(j + i * cols);
-
-                int value = Integer.parseInt(originalTile.getAccessibleText());
-
-                cumulativeSum += value;
-                Rectangle tile = new Rectangle(tileWidth, tileHeight);
-                tile.setFill(Color.LIGHTGRAY);
-                tile.setStroke(Color.BLACK);
-                tile.setOnMouseClicked(e -> changeTileColor(tile));
-
-                Text text = new Text(String.valueOf(cumulativeSum));
-                text.setFont(Font.font("Arial", 12));
-                text.setFill(Color.WHITE);
-                GridPane.setHalignment(text, HPos.CENTER);
-
-                thirdTable.add(tile, j, i);
-                thirdTable.add(text, j, i);
+        // Populate the rest of the thirdTableArray
+        for (int j = 1; j < colArrays; j++) {
+            for (int i = 0; i < rowArrays; i++) {
+                // For the first row, find max between left and down-left from previous column
+                if (i == 0) {
+                    thirdTableArray[i][j] = getMax(0, thirdTableArray[i][j - 1], i + 1 < rowArrays ? thirdTableArray[i + 1][j - 1] : 0);
+                }
+                // For the last row, find max between left-up and left from previous column
+                else if (i == rows) {
+                    thirdTableArray[i][j] = secondTableArray[i][j] + getMax(0, thirdTableArray[i - 1][j - 1], thirdTableArray[i][j - 1]);
+                }
+                // For all other rows, find max between left-up, left, and left-down from previous column
+                else {
+                    int leftUp = (i - 1 >= 0) ? thirdTableArray[i - 1][j - 1] : 0;
+                    int left = thirdTableArray[i][j - 1];
+                    int leftDown = (i + 1 < rowArrays) ? thirdTableArray[i + 1][j - 1] : 0;
+                    thirdTableArray[i][j] = secondTableArray[i][j] + getMax(leftUp, left, leftDown);
+                }
             }
         }
 
+        // Print thirdTableArray for verification
+        System.out.println("Third table:");
+        for (int i = 0; i < rowArrays; i++) {
+            for (int j = 0; j < colArrays; j++) {
+                System.out.print(thirdTableArray[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        thirdGridPane.setHgap(TILE_MARGIN);
+        thirdGridPane.setVgap(TILE_MARGIN);
+        double availableWidth = vboxBottom.getWidth() - (cols + 1) * TILE_MARGIN - 2 * HORIZONTAL_MARGIN;
+        double availableHeight = vboxBottom.getHeight() - (rows + 1) * TILE_MARGIN - 2 * VERTICAL_MARGIN;
+        double tileWidth = availableWidth / cols;
+        double tileHeight = availableHeight / rows;
+
+        for (int j = 1; j < colArrays; j++) {
+            for (int i = 1; i < rowArrays; i++) {
+                    Rectangle tile = new Rectangle(tileWidth, tileHeight);
+                    tile.setFill(Color.TRANSPARENT);
+                    tile.setStroke(Color.BLACK);
+                    tile.setOnMouseClicked(e -> changeTileColor(tile));
+
+                    int val = thirdTableArray[i][j];
+                    Text text = new Text(String.valueOf(val));
+                    text.setFont(Font.font("Arial", 12));
+                    text.setFill(Color.BLACK);
+
+                    StackPane stackPane = new StackPane();
+                    stackPane.getChildren().addAll(text, tile);
+
+                    thirdGridPane.add(stackPane, j, i);
+
+            }
+        }
 
         Label thirdTableLabel = new Label("Third Table");
         thirdTableLabel.setFont(Font.font("Arial", FontWeight.BOLD, 20));
         thirdTableLabel.setPadding(new Insets(10, 0, 10, 0));
 
-        vboxBottom.getChildren().addAll(thirdTableLabel, thirdTable);
+        vboxBottom.getChildren().addAll(thirdTableLabel, thirdGridPane);
 
     }
 
 
-    int getMax(int a, int b, int c){
-        int max = a;
-        if(max < b){
+    int getMax(int a, int b, int c) {
+        int max;
+        if (a > b && a > c) {
+            max = a;
+        } else if (b > a && b > c) {
             max = b;
-        } else if (max < c) {
-            max = c;
-        }
+        } else max = c;
+
         return max;
     }
+
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
@@ -470,5 +517,66 @@ public class LandController {
 
     public void clearLand(ActionEvent actionEvent) {
         vboxBottom.getChildren().clear();
+    }
+
+    public void minePit(ActionEvent actionEvent) {
+
+        for(int j = colBench; j >= 1; j--){
+            int max = Integer.MIN_VALUE;
+            int rowMinePit = -1;
+            int tileIndex;
+            for (int i = 1; i <= rowBench; i++) {
+                if (thirdTableArray[i][j] > max) {
+                    max = thirdTableArray[i][j];
+                    rowMinePit = i-1;
+                }
+
+                if (thirdTableArray[i][j] == max) {
+                    max = thirdTableArray[i][j];
+                    rowMinePit = i-1;
+                }
+            }
+
+
+            System.out.println("Max value: " + max);
+            System.out.println("Index of max value (rowMinePit): " + rowMinePit);
+            System.out.println("Total columns (j or currentColBench): " + j);
+
+            if (rowMinePit != -1) {
+                int totalIndex = j * rowBench;
+                System.out.println("total index " + totalIndex);
+                // to get index of gridpane instead of i * currRow + currColumn this is for gridpane left to right,
+                // in gridpanes top to bottom totalCol * totalRow - (totalRow - currRow) currRow in which we found the first biggest element
+                tileIndex = totalIndex - (rowBench - rowMinePit);
+                System.out.println("Tile index: " + tileIndex);
+
+                if (tileIndex < thirdGridPane.getChildren().size()) {
+                    Node node = thirdGridPane.getChildren().get(tileIndex);
+
+                    if (node instanceof StackPane) {
+                        StackPane stackPane = (StackPane) node;
+                        ObservableList<Node> children = stackPane.getChildren();
+
+                        for (Node child : children) {
+                            if (child instanceof Rectangle) {
+                                Rectangle tile = (Rectangle) child;
+                                tile.setFill(lighGreenBench);
+                                break;
+                            }
+                        }
+                    } else {
+                        System.out.println("Error: The node is not a StackPane.");
+                    }
+                } else {
+                    System.out.println("Error: Calculated tile index is out of bounds.");
+                }
+            }
+
+        }
+
+
+
+    // kc animate ba
+
     }
 }
