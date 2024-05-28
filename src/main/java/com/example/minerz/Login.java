@@ -8,10 +8,6 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class Login extends Application {
 
@@ -21,7 +17,7 @@ public class Login extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Register.class.getResource("LoginPage.fxml"));
         Parent root = fxmlLoader.load();
 
-        stage.getIcons().add(new Image(Login.class.getResourceAsStream("/logo.png")));
+        stage.getIcons().add(new Image(Login.class.getResourceAsStream("/grass.png")));
         Scene scene = new Scene(root, 600, 400);
 
         stage.setTitle("Login");

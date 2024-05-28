@@ -28,13 +28,13 @@
             </Text>
                 <TextField fx:id="inputUser" layoutX="193.0" layoutY="154.0" prefHeight="38.0" prefWidth="208.0">
                     <font>
-                        <Font name="Helvetica" size="12.0" />
+                        <Font name="Minecraft Regular" size="12.0" />
                     </font></TextField>
                 <PasswordField fx:id="inputPass" layoutX="195.0" layoutY="230.0" prefHeight="42.0" prefWidth="208.0">
                     <font>
                         <Font name="Helvetica" size="12.0" />
                     </font></PasswordField>
-                <Button fx:id="btnRegister" layoutX="318.0" layoutY="301.0" mnemonicParsing="false" onAction="#register" prefHeight="31.0" prefWidth="96.0" text="Register">
+                <Button fx:id="btnRegister" layoutX="305.0" layoutY="301.0" mnemonicParsing="false" onAction="#register" prefHeight="31.0" prefWidth="96.0" text="Register">
                     <font>
                         <Font name="Minecraft Regular" size="12.0" />
                     </font>

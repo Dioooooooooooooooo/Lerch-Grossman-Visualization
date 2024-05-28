@@ -12,7 +12,7 @@ public class Land extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Land.class.getResource("land.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 700, 500);
+        Scene scene = new Scene(fxmlLoader.load(), 1920, 1080);
         stage.setTitle("Miners");
         stage.setScene(scene);
         stage.setMaximized(true);

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.minerz.LandController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.minerz.LandController">
    <bottom>
       <VBox fx:id="vboxBottom" alignment="CENTER" BorderPane.alignment="CENTER">
       </VBox>
@@ -16,26 +16,32 @@
    <top>
       <AnchorPane prefHeight="220.0" prefWidth="700.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="46.0" layoutY="75.0" text="Rows: ">
+            <Label alignment="CENTER" layoutX="537.0" layoutY="98.0" text="Rows: ">
                <font>
-                  <Font name="Helvetica" size="12.0" />
+                  <Font name="Minecraft Regular" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="txtRows" layoutX="302.0" layoutY="70.0" />
-            <Label layoutX="243.0" layoutY="74.0" text="Columns: ">
+            <TextField fx:id="txtRows" alignment="CENTER" layoutX="898.0" layoutY="98.0" prefHeight="40.0" prefWidth="151.0">
                <font>
-                  <Font name="Helvetica‭ ‬עבה" size="12.0" />
+                  <Font name="Minecraft Regular" size="12.0" />
+               </font></TextField>
+            <Label alignment="CENTER" layoutX="788.0" layoutY="98.0" text="Columns: ">
+               <font>
+                  <Font name="Minecraft Regular" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="txtCols" layoutX="83.0" layoutY="70.0" />
-            <Button fx:id="btnCreateLand" layoutX="484.0" layoutY="69.0" mnemonicParsing="false" onAction="#createLand" text="Create Land">
+            <TextField fx:id="txtCols" alignment="CENTER" layoutX="608.0" layoutY="98.0" prefHeight="40.0" prefWidth="151.0">
                <font>
-                  <Font name="Helvetica" size="12.0" />
+                  <Font name="Minecraft Regular" size="12.0" />
+               </font></TextField>
+            <Button fx:id="btnCreateLand" alignment="CENTER" layoutX="1102.0" layoutY="89.0" mnemonicParsing="false" onAction="#createLand" prefHeight="40.0" prefWidth="150.0" text="Create Land">
+               <font>
+                  <Font name="Minecraft Regular" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnClearLand" layoutX="576.0" layoutY="69.0" mnemonicParsing="false" onAction="#clearLand" text="Clear Land">
+            <Button fx:id="btnClearLand" alignment="CENTER" layoutX="1298.0" layoutY="88.0" mnemonicParsing="false" onAction="#clearLand" prefHeight="40.0" prefWidth="150.0" text="Clear Land">
                <font>
-                  <Font name="Helvetica" size="12.0" />
+                  <Font name="Minecraft Regular" size="14.0" />
                </font>
             </Button>
          </children>
