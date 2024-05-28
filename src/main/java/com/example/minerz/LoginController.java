@@ -87,7 +87,7 @@ public class LoginController {
         boolean authenticated = authenticate(username, password);
         if (authenticated) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("Watchlist.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Land.fxml"));
                 Parent root = loader.load();
                 LandController landController = loader.getController();
                 Stage stage = new Stage();

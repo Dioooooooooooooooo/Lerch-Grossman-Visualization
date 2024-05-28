@@ -14,60 +14,57 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.minerz.LoginController">
     <right>
-        <AnchorPane prefHeight="346.0" prefWidth="247.0" BorderPane.alignment="CENTER">
-            <children>
-                <ImageView fitHeight="185.0" fitWidth="213.0" layoutY="93.0">
-                    <image>
-                        <Image url="@../../../afflictioncrows.png" />
-                    </image>
-                </ImageView>
-            </children>
-        </AnchorPane>
+        <AnchorPane prefHeight="346.0" prefWidth="247.0" BorderPane.alignment="CENTER" />
     </right>
     <left>
-        <AnchorPane prefHeight="400.0" prefWidth="355.0" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="400.0" prefWidth="602.0" BorderPane.alignment="CENTER">
             <children>
-                <Label layoutX="35.0" layoutY="232.0" text="PASSWORD:">
+            <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../../scenery.gif" />
+               </image>
+            </ImageView>
+                <Label layoutX="32.0" layoutY="209.0" text="PASSWORD:">
                     <font>
-                        <Font name="CoolveticaRg-Regular" size="20.0" />
+                        <Font name="Minecraft Regular" size="14.0" />
                     </font>
                 </Label>
-                <Label layoutX="35.0" layoutY="177.0" text="USERNAME:">
+                <Label layoutX="32.0" layoutY="124.0" text="USERNAME:">
                     <font>
-                        <Font name="CoolveticaRg-Regular" size="20.0" />
+                        <Font name="Minecraft Regular" size="14.0" />
                     </font>
                 </Label>
-                <TextField fx:id="loginUserInput" layoutX="155.0" layoutY="176.0" prefHeight="24.0" prefWidth="150.0">
+                <TextField fx:id="loginUserInput" layoutX="32.0" layoutY="155.0" prefHeight="41.0" prefWidth="218.0">
                     <font>
-                        <Font name="CoolveticaRg-Regular" size="12.0" />
+                        <Font name="Minecraft Regular" size="12.0" />
                     </font></TextField>
-                <PasswordField fx:id="loginPassInput" layoutX="155.0" layoutY="231.0" prefHeight="24.0" prefWidth="150.0">
+                <PasswordField fx:id="loginPassInput" layoutX="32.0" layoutY="235.0" prefHeight="42.0" prefWidth="219.0">
                     <font>
-                        <Font name="CoolveticaRg-Regular" size="12.0" />
+                        <Font name="Minecraft Regular" size="12.0" />
                     </font></PasswordField>
-                <Button fx:id="btnLogin" layoutX="203.0" layoutY="274.0" mnemonicParsing="false" onAction="#login" prefWidth="99.0" text="Login">
+                <Button fx:id="btnLogin" layoutX="160.0" layoutY="300.0" mnemonicParsing="false" onAction="#login" prefHeight="23.0" prefWidth="91.0" text="Login">
                     <font>
-                        <Font name="CoolveticaRg-Regular" size="15.0" />
+                        <Font name="Minecraft Regular" size="15.0" />
                     </font></Button>
-                <Text layoutX="114.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGIN" wrappingWidth="127.06600189208984">
+                <Text layoutX="218.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGIN" wrappingWidth="164.06600189208984">
                     <font>
-                        <Font name="CoolveticaRg-Regular" size="44.0" />
+                        <Font name="Minecraft Regular" size="44.0" />
                     </font>
                 </Text>
-                <Label fx:id="noAccount" layoutX="91.0" layoutY="125.0" prefHeight="43.0" prefWidth="208.0" textFill="RED" />
-                <Hyperlink fx:id="backToRegister" layoutX="35.0" layoutY="278.0" onAction="#backRegister" text="No Account?" textFill="RED">
+                <Label fx:id="noAccount" layoutX="32.0" layoutY="285.0" prefHeight="23.0" prefWidth="113.0" textFill="RED" />
+                <Hyperlink fx:id="backToRegister" layoutX="420.0" layoutY="14.0" onAction="#backRegister" text="Dont have an account?" textFill="RED">
                     <font>
-                        <Font name="CoolveticaRg-Regular" size="12.0" />
+                        <Font name="Minecraft Regular" size="12.0" />
                     </font>
                 </Hyperlink>
-                <Hyperlink fx:id="resetPassword" layoutX="27.0" layoutY="304.0" onAction="#setResetPassword" text="Reset Password" textFill="RED">
+                <Hyperlink fx:id="resetPassword" layoutX="170.0" layoutY="276.0" onAction="#setResetPassword" text="Reset Password" textFill="RED">
                     <font>
-                        <Font name="CoolveticaRg-Regular" size="12.0" />
+                        <Font name="Calibri" size="10.0" />
                     </font>
                 </Hyperlink>
             </children></AnchorPane>
     </left>
     <bottom>
-        <AnchorPane prefHeight="54.0" prefWidth="600.0" style="-fx-background-color: #0A0A0A;" BorderPane.alignment="CENTER" />
+        <AnchorPane prefHeight="0.0" prefWidth="600.0" style="-fx-background-color: #0A0A0A;" BorderPane.alignment="CENTER" />
     </bottom>
 </BorderPane>
