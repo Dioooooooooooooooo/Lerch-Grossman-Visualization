@@ -4,8 +4,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
 import javafx.scene.image.Image;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -24,9 +24,10 @@ public class Register extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Register.class.getResource("register.fxml"));
         Parent root = fxmlLoader.load();
 
-        stage.getIcons().add(new Image(Register.class.getResourceAsStream("/logo.png")));
+        stage.getIcons().add(new Image(Register.class.getResourceAsStream("/grass.png")));
 
         Scene scene = new Scene(root, 600, 400);
+        MediaUtil.playMusic();
 
         stage.setTitle("Register");
         stage.setScene(scene);
@@ -60,5 +61,4 @@ public class Register extends Application {
         }
         return c;
     }
-
 }

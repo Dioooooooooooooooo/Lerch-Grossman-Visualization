@@ -10,8 +10,6 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 
 public class RegisterController {
@@ -106,7 +104,7 @@ public class RegisterController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
-            stage.getIcons().add(new Image(Login.class.getResourceAsStream("/logo.png")));
+            stage.getIcons().add(new Image(Login.class.getResourceAsStream("/grass.png")));
             stage.setScene(new Scene(root));
             stage.setTitle("Login");
             stage.show();
