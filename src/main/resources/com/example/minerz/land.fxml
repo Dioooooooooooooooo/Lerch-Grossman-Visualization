@@ -1,45 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
 <BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.minerz.LandController">
-   <bottom>
-      <VBox fx:id="vboxBottom" alignment="CENTER" BorderPane.alignment="CENTER">
-      </VBox>
-   </bottom>
-   <top>
-      <AnchorPane prefHeight="165.0" prefWidth="700.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label layoutX="30.0" layoutY="75.0" text="Rows: ">
-               <font>
-                  <Font name="Helvetica" size="12.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txtRows" layoutX="280.0" layoutY="70.0" />
-            <Label layoutX="230.0" layoutY="74.0" text="Columns: ">
-               <font>
-                  <Font name="Helvetica‭ ‬עבה" size="12.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txtCols" layoutX="70.0" layoutY="70.0" />
-            <Button fx:id="btnCreateLand" layoutX="440.0" layoutY="69.0" mnemonicParsing="false" onAction="#createLand" text="Create Land">
-               <font>
-                  <Font name="Helvetica" size="12.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnClearLand" layoutX="530.0" layoutY="69.0" mnemonicParsing="false" onAction="#clearLand" text="Clear Land">
-               <font>
-                  <Font name="Helvetica" size="12.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnLerch" layoutX="610.0" layoutY="69.0" mnemonicParsing="false" onAction="#minePit" text="Mine pit">
-               <font>
-                  <Font name="Helvetica" size="12.0" />
-               </font>
-            </Button>
-         </children>
-      </AnchorPane>
-   </top>
+    <bottom>
+        <VBox fx:id="vboxBottom" alignment="CENTER" BorderPane.alignment="CENTER">
+        </VBox>
+    </bottom>
+    <top>
+        <AnchorPane prefHeight="165.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label layoutX="46.0" layoutY="75.0" text="Rows: ">
+                    <font>
+                        <Font name="Helvetica" size="12.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="txtRows" layoutX="302.0" layoutY="70.0" />
+                <Label layoutX="243.0" layoutY="74.0" text="Columns: ">
+                    <font>
+                        <Font name="Helvetica‭ ‬עבה" size="12.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="txtCols" layoutX="83.0" layoutY="70.0" />
+                <Button fx:id="btnCreateLand" layoutX="484.0" layoutY="69.0" mnemonicParsing="false" onAction="#createLand" text="Create Land">
+                    <font>
+                        <Font name="Helvetica" size="12.0" />
+                    </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+                </Button>
+                <Button fx:id="btnClearLand" layoutX="576.0" layoutY="69.0" mnemonicParsing="false" onAction="#clearLand" text="Clear Land">
+                    <font>
+                        <Font name="Helvetica" size="12.0" />
+                    </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+                </Button>
+                <Button fx:id="btnLerch" layoutX="484.0" layoutY="109.0" mnemonicParsing="false" onAction="#minePit" text="Mine pit">
+                    <font>
+                        <Font name="Helvetica" size="12.0" />
+                    </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+                </Button>
+            <Label layoutX="14.0" layoutY="108.0" prefHeight="27.0" prefWidth="45.0" text="Values:" />
+            <TilePane hgap="4.0" layoutX="63.0" layoutY="113.0" prefHeight="16.0" prefWidth="108.0" tileAlignment="CENTER_LEFT" vgap="1.0">
+               <children>
+                  <RadioButton fx:id="radioBtn5" mnemonicParsing="false" onAction="#handleRadioButtonAction" text="5">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></RadioButton>
+                  <RadioButton fx:id="radioBtn6" mnemonicParsing="false" onAction="#handleRadioButtonAction" text="6">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></RadioButton>
+                  <RadioButton fx:id="radioBtn7" mnemonicParsing="false" onAction="#handleRadioButtonAction" text="7">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></RadioButton>
+               </children>
+            </TilePane>
+            </children>
+        </AnchorPane>
+    </top>
 </BorderPane>

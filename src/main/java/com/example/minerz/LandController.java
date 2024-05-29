@@ -2,9 +2,12 @@ package com.example.minerz;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
@@ -23,8 +26,11 @@ import java.util.Map;
 
 
 public class LandController {
-    int finalRow;
-    int finalCol;
+
+    private Color currentColor;
+    public RadioButton radioBtn5;
+    public RadioButton radioBtn6;
+    public RadioButton radioBtn7;
     private static final double TILE_MARGIN = 2.0;
     private static final double VERTICAL_MARGIN = 20.0;
     private static final double HORIZONTAL_MARGIN = 40.0;
@@ -35,8 +41,6 @@ public class LandController {
     public GridPane gridPane;
     public VBox vboxBottom;
     public ScrollPane scrollPane;
-    int rowBef;
-    int colBef;
 
     int rowBench;
     int colBench;
@@ -50,6 +54,9 @@ public class LandController {
     int[][] secondTableArray;
     int[][] thirdTableArray;
 
+    private ToggleGroup toggleGroup = new ToggleGroup();
+
+
 
     Color lighGreenBench = Color.rgb(144, 238, 144, 0.5);
     Color lighterBrownGreen = Color.rgb(204, 204, 0);
@@ -59,15 +66,14 @@ public class LandController {
     Color darkBrownGreen = Color.rgb(51, 51, 0);
     Color darkerBrownGreen = Color.rgb(102, 51, 0);
     Color evenDarkerBrownGreen = Color.rgb(51, 25, 0);
-    Color lightOrange = Color.rgb(255, 204, 153);
-    Color orange = Color.rgb(255, 128, 0);
-
+    Color lighterOrange = Color.rgb(255, 204, 153);
+    Color light0range = Color.rgb(255, 170, 27);
+    Color orange = Color.rgb(255, 127, 0);
 
     public void initialize() {
         gridPane = new GridPane();
         gridPane.setHgap(TILE_MARGIN);
         gridPane.setVgap(TILE_MARGIN);
-
         vboxBottom = new VBox();
         vboxBottom.prefWidthProperty().bind(borderPane.widthProperty());
         vboxBottom.prefHeightProperty().bind(borderPane.heightProperty().divide(2));
@@ -80,6 +86,10 @@ public class LandController {
 
         borderPane.setCenter(scrollPane);
 
+        radioBtn5.setToggleGroup(toggleGroup);
+        radioBtn6.setToggleGroup(toggleGroup);
+        radioBtn7.setToggleGroup(toggleGroup);
+
         partitionMap.put("LIGHTESTBROWNGREEN", 0);
         partitionMap.put("LIGHTBROWNGREEN", 1);
         partitionMap.put("BROWNGREEN", 2);
@@ -89,27 +99,32 @@ public class LandController {
         partitionMap.put("DARKESTBROWNGREEN", 6);
     }
 
+
+
+
     public void createLand(ActionEvent actionEvent) {
         secondTable = new GridPane();
         thirdGridPane = new GridPane();
         int rows;
         int cols;
+
+        if(!gridPane.getChildren().isEmpty()){
+            showAlert("You can't","There's an existing land sample!");
+            return;
+        }
+
         try {
             rows = Integer.parseInt(txtRows.getText());
             cols = Integer.parseInt(txtCols.getText());
-
-            if (rows == rowBef && cols == colBef) {
-                showAlert("No Change", "The number of rows and columns is the same as before.");
-                return;
-            }
-
-            rowBef = rows;
-            colBef = cols;
+            System.out.println(cols + " " + rows);
             rowBench = rows;
             colBench = cols;
 
         } catch (NumberFormatException e) {
             showAlert("Invalid input", "Please enter valid numbers for rows and columns.");
+            return;
+        }catch (Exception e){
+            showAlert("Invalid input", "Please enter numbers for rows and columns.");
             return;
         }
 
@@ -126,7 +141,6 @@ public class LandController {
                 Rectangle tile = new Rectangle(tileWidth, tileHeight);
                 tile.setFill(Color.LIGHTGRAY);
                 tile.setStroke(Color.BLACK);
-                tile.setOnMouseClicked(e -> changeTileColor(tile));
                 gridPane.add(tile, j, i);
             }
         }
@@ -134,8 +148,7 @@ public class LandController {
         vboxBottom.getChildren().clear();
         vboxBottom.getChildren().add(gridPane);
         drillData();
-        secondTable = createSecondTable(rows, cols);
-        lerchGrossMan(rows, cols);
+
 
         Scene scene = borderPane.getScene();
         if (scene != null) {
@@ -146,9 +159,50 @@ public class LandController {
         }
     }
 
-    private void changeTileColor(Rectangle tile) {
-        tile.setFill(Color.BLACK);
+    private Color getCurrentColor(){
+        System.out.println("Current color is: " + currentColor);
+        return currentColor;
     }
+    private Color setCurrentColor(int val){
+        switch (val){
+            case 5:
+                currentColor = lighterOrange;
+                break;
+            case 6:
+                currentColor = light0range;
+                break;
+            case 7:
+                currentColor = orange;
+            default:
+                break;
+        }
+
+
+        return currentColor;
+    }
+
+    private void updateText(Rectangle tile, Text text, Color color){
+        text.setAccessibleText("");
+        if(color == null){
+            showAlert("No values selected","Please select a value in the radiobutton above.");
+            return;
+        }
+
+        if(color.equals(lighterOrange)){
+            tile.setFill(color);
+            text.setText("5");
+            tile.setAccessibleText("5");
+        }else if(color.equals(light0range)){
+            tile.setFill(color);
+            text.setText("6");
+            tile.setAccessibleText("6");
+        }else if(color.equals(orange)){
+            tile.setFill(color);
+            text.setText("7");
+            tile.setAccessibleText("7");
+        }
+    }
+
 
     private void drillData() {
 
@@ -217,6 +271,9 @@ public class LandController {
                 Rectangle tile = (Rectangle) gridPane.getChildren().get(rowIndex);
                 tile.setFill(lighterBrownGreen);
                 tile.setAccessibleText("2");
+                tile.setOnMouseEntered(e -> tile.setCursor(Cursor.HAND));
+                tile.setOnMouseExited(e -> tile.setCursor(Cursor.DEFAULT));
+                tile.setOnMouseClicked(e -> updateText(tile, text, getCurrentColor()));
                 gridPane.add(text, j, rowIndex / cols);
                 rowIndex++;
             }
@@ -232,6 +289,9 @@ public class LandController {
                 Rectangle tile = (Rectangle) gridPane.getChildren().get(rowIndex);
                 tile.setFill(lightBrownGreen);
                 tile.setAccessibleText("1");
+                tile.setOnMouseClicked(e -> updateText(tile, text, getCurrentColor()));
+                tile.setOnMouseEntered(e -> tile.setCursor(Cursor.HAND));
+                tile.setOnMouseExited(e -> tile.setCursor(Cursor.DEFAULT));
                 gridPane.add(text, j, rowIndex / cols);
                 rowIndex++;
             }
@@ -247,6 +307,9 @@ public class LandController {
                 Rectangle tile = (Rectangle) gridPane.getChildren().get(rowIndex);
                 tile.setFill(brownGreen);
                 tile.setAccessibleText("0");
+                tile.setOnMouseClicked(e -> updateText(tile, text, getCurrentColor()));
+                tile.setOnMouseEntered(e -> tile.setCursor(Cursor.HAND));
+                tile.setOnMouseExited(e -> tile.setCursor(Cursor.DEFAULT));
                 gridPane.add(text, j, rowIndex / cols);
                 rowIndex++;
             }
@@ -262,6 +325,9 @@ public class LandController {
                 Rectangle tile = (Rectangle) gridPane.getChildren().get(rowIndex);
                 tile.setFill(green);
                 tile.setAccessibleText("-1");
+                tile.setOnMouseClicked(e -> updateText(tile, text, getCurrentColor()));
+                tile.setOnMouseEntered(e -> tile.setCursor(Cursor.HAND));
+                tile.setOnMouseExited(e -> tile.setCursor(Cursor.DEFAULT));
                 gridPane.add(text, j, rowIndex / cols);
                 rowIndex++;
             }
@@ -277,6 +343,9 @@ public class LandController {
                 Rectangle tile = (Rectangle) gridPane.getChildren().get(rowIndex);
                 tile.setFill(darkBrownGreen);
                 tile.setAccessibleText("-2");
+                tile.setOnMouseClicked(e -> updateText(tile, text, getCurrentColor()));
+                tile.setOnMouseEntered(e -> tile.setCursor(Cursor.HAND));
+                tile.setOnMouseExited(e -> tile.setCursor(Cursor.DEFAULT));
                 gridPane.add(text, j, rowIndex / cols);
                 rowIndex++;
             }
@@ -292,6 +361,9 @@ public class LandController {
                 Rectangle tile = (Rectangle) gridPane.getChildren().get(rowIndex);
                 tile.setFill(darkerBrownGreen);
                 tile.setAccessibleText("-3");
+                tile.setOnMouseClicked(e -> updateText(tile, text, getCurrentColor()));
+                tile.setOnMouseEntered(e -> tile.setCursor(Cursor.HAND));
+                tile.setOnMouseExited(e -> tile.setCursor(Cursor.DEFAULT));
                 gridPane.add(text, j, rowIndex / cols);
                 rowIndex++;
             }
@@ -307,6 +379,9 @@ public class LandController {
                 Rectangle tile = (Rectangle) gridPane.getChildren().get(rowIndex);
                 tile.setFill(evenDarkerBrownGreen);
                 tile.setAccessibleText("-4");
+                tile.setOnMouseClicked(e -> updateText(tile, text, getCurrentColor()));
+                tile.setOnMouseEntered(e -> tile.setCursor(Cursor.HAND));
+                tile.setOnMouseExited(e -> tile.setCursor(Cursor.DEFAULT));
                 gridPane.add(text, j, rowIndex / cols);
                 rowIndex++;
             }
@@ -333,12 +408,11 @@ public class LandController {
             for (int i = 0; i < rows; i++) {
                 Rectangle originalTile = (Rectangle) gridPane.getChildren().get(j + (i * cols));
                 int value = Integer.parseInt(originalTile.getAccessibleText());
-
+                System.out.println("values: " + value);
                 cumulativeSum += value;
                 Rectangle tile = new Rectangle(tileWidth, tileHeight);
                 tile.setFill(Color.LIGHTGRAY);
                 tile.setStroke(Color.BLACK);
-                tile.setOnMouseClicked(e -> changeTileColor(tile));
                 tile.setAccessibleText(String.valueOf(cumulativeSum));
 
                 Text text = new Text(String.valueOf(cumulativeSum));
@@ -349,6 +423,7 @@ public class LandController {
                 secondGridPane.add(tile, j, i);
                 secondGridPane.add(text, j, i);
             }
+            System.out.println();
         }
 
 
@@ -411,8 +486,6 @@ public class LandController {
                 secondTableArray[row + rowOffset][col + colOffset] = val;
             }
 
-            finalRow = row;
-            finalCol = col;
         }
 
         // System.out.println("The final row and col: " + finalRow + " " + finalCol + "the final value which should -52 with 55x60 grid: " + secondTableArray[finalRow][finalCol]);
@@ -472,7 +545,6 @@ public class LandController {
                     Rectangle tile = new Rectangle(tileWidth, tileHeight);
                     tile.setFill(Color.TRANSPARENT);
                     tile.setStroke(Color.BLACK);
-                    tile.setOnMouseClicked(e -> changeTileColor(tile));
 
                     int val = thirdTableArray[i][j];
                     Text text = new Text(String.valueOf(val));
@@ -516,11 +588,17 @@ public class LandController {
     }
 
     public void clearLand(ActionEvent actionEvent) {
+        gridPane.getChildren().clear();
         vboxBottom.getChildren().clear();
     }
 
     public void minePit(ActionEvent actionEvent) {
-
+        if(gridPane.getChildren().isEmpty()){
+            showAlert("No Land", "Please create land first to have an upper pit limit.");
+            return;
+        }
+        secondTable = createSecondTable(rowBench, colBench);
+        lerchGrossMan(rowBench, colBench);
         for(int j = colBench; j >= 1; j--){
             int max = Integer.MIN_VALUE;
             int rowMinePit = -1;
@@ -549,7 +627,7 @@ public class LandController {
                 // in gridpanes top to bottom totalCol * totalRow - (totalRow - currRow) currRow in which we found the first biggest element
                 tileIndex = totalIndex - (rowBench - rowMinePit);
                 System.out.println("Tile index: " + tileIndex);
-
+                // find the max left if currCol is totalcol - 1
                 if (tileIndex < thirdGridPane.getChildren().size()) {
                     Node node = thirdGridPane.getChildren().get(tileIndex);
 
@@ -574,9 +652,26 @@ public class LandController {
 
         }
 
-
-
     // kc animate ba
 
     }
+
+    @FXML
+    private void handleRadioButtonAction() {
+        if (radioBtn5.isSelected()) {
+            System.out.println("RadioButton 1 is selected.");
+            setCurrentColor(5);
+        }
+
+        if (radioBtn6.isSelected()) {
+            System.out.println("RadioButton 2 is selected.");
+            setCurrentColor(6);
+        }
+
+        if (radioBtn7.isSelected()) {
+            System.out.println("RadioButton 3 is selected.");
+            setCurrentColor(7);
+        }
+    }
+
 }
