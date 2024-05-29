@@ -207,7 +207,11 @@ public class LandController {
             text.setText("7");
             tile.setAccessibleText("7");
         }
+
+        // Play dirt sound effect when a tile is clicked
+        MediaUtil.getInstance().playDirt();
     }
+
 
 
     private void drillData() {
