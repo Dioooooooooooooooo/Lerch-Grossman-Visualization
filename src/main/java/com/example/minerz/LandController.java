@@ -110,6 +110,7 @@ public class LandController {
 
         if(!gridPane.getChildren().isEmpty()){
             showAlert("You can't","There's an existing land sample!");
+            MediaUtil.getInstance().playSoundEffect();
             return;
         }
 
@@ -121,9 +122,13 @@ public class LandController {
             colBench = cols;
 
         } catch (NumberFormatException e) {
+            MediaUtil.getInstance().playSoundEffect();
+
             showAlert("Invalid input", "Please enter valid numbers for rows and columns.");
             return;
         }catch (Exception e){
+            MediaUtil.getInstance().playSoundEffect();
+
             showAlert("Invalid input", "Please enter numbers for rows and columns.");
             return;
         }
@@ -148,6 +153,7 @@ public class LandController {
         vboxBottom.getChildren().clear();
         vboxBottom.getChildren().add(gridPane);
         drillData();
+        MediaUtil.getInstance().playSoundEffect();
 
 
         Scene scene = borderPane.getScene();
@@ -588,12 +594,14 @@ public class LandController {
     }
 
     public void clearLand(ActionEvent actionEvent) {
+        MediaUtil.getInstance().playSoundEffect();
         gridPane.getChildren().clear();
         vboxBottom.getChildren().clear();
     }
 
     public void minePit(ActionEvent actionEvent) {
         if(gridPane.getChildren().isEmpty()){
+            MediaUtil.getInstance().playSoundEffect();
             showAlert("No Land", "Please create land first to have an upper pit limit.");
             return;
         }
@@ -643,15 +651,17 @@ public class LandController {
                             }
                         }
                     } else {
+                        MediaUtil.getInstance().playSoundEffect();
                         System.out.println("Error: The node is not a StackPane.");
                     }
                 } else {
+                    MediaUtil.getInstance().playSoundEffect();
                     System.out.println("Error: Calculated tile index is out of bounds.");
                 }
             }
 
         }
-
+        MediaUtil.getInstance().playSoundEffect();
     // kc animate ba
 
     }

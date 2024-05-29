@@ -21,35 +21,35 @@
                   <Image url="@../../../gif.gif" />
                </image>
             </ImageView>
-            <Text layoutX="93.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lersch-Grossman Visualizer">
+            <Text layoutX="93.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lersch-Grossman Visualizer">
                <font>
                   <Font name="Minecraft Regular" size="24.0" />
                </font>
             </Text>
-                <TextField fx:id="inputUser" layoutX="193.0" layoutY="154.0" prefHeight="38.0" prefWidth="208.0">
+                <TextField fx:id="inputUser" layoutX="195.0" layoutY="152.0" prefHeight="38.0" prefWidth="208.0">
                     <font>
                         <Font name="Minecraft Regular" size="12.0" />
                     </font></TextField>
-                <PasswordField fx:id="inputPass" layoutX="195.0" layoutY="230.0" prefHeight="42.0" prefWidth="208.0">
+                <PasswordField fx:id="inputPass" layoutX="201.0" layoutY="239.0" prefHeight="42.0" prefWidth="208.0">
                     <font>
                         <Font name="Helvetica" size="12.0" />
                     </font></PasswordField>
-                <Button fx:id="btnRegister" layoutX="305.0" layoutY="301.0" mnemonicParsing="false" onAction="#register" prefHeight="31.0" prefWidth="96.0" text="Register">
+                <Button fx:id="btnRegister" layoutX="311.0" layoutY="310.0" mnemonicParsing="false" onAction="#register" prefHeight="31.0" prefWidth="96.0" text="Register">
                     <font>
                         <Font name="Minecraft Regular" size="12.0" />
                     </font>
                 </Button>
-                <Label fx:id="wrongLogin" layoutX="195.0" layoutY="277.0" prefHeight="17.0" prefWidth="131.0" textFill="RED" />
-                <Hyperlink fx:id="skipToLogin" layoutX="14.0" layoutY="365.0" onAction="#skip" text="Already have an account?" textFill="WHITE">
+                <Label fx:id="wrongLogin" layoutX="201.0" layoutY="286.0" prefHeight="17.0" prefWidth="131.0" textFill="RED" />
+                <Hyperlink fx:id="skipToLogin" layoutX="400.0" layoutY="14.0" onAction="#skip" text="Already have an account?" textFill="RED">
                     <font>
-                        <Font name="Century" size="12.0" />
+                        <Font name="Minecraft Regular" size="12.0" />
                     </font></Hyperlink>
-            <Text layoutX="195.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:">
+            <Text layoutX="197.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:">
                <font>
                   <Font name="Minecraft Regular" size="14.0" />
                </font>
             </Text>
-            <Text layoutX="195.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:">
+            <Text layoutX="201.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:">
                <font>
                   <Font name="Minecraft Regular" size="14.0" />
                </font>

@@ -17,41 +17,50 @@
     <top>
         <AnchorPane prefHeight="220.0" prefWidth="700.0" BorderPane.alignment="CENTER">
             <children>
-                <Label alignment="CENTER" layoutX="537.0" layoutY="98.0" text="Rows: ">
+                <Label alignment="CENTER" layoutX="447.0" layoutY="100.0" text="Rows: ">
                     <font>
                         <Font name="Minecraft Regular" size="18.0" />
                     </font>
                 </Label>
-                <TextField fx:id="txtRows" alignment="CENTER" layoutX="898.0" layoutY="98.0" prefHeight="40.0" prefWidth="151.0">
+                <TextField fx:id="txtRows" alignment="CENTER" layoutX="808.0" layoutY="100.0" prefHeight="40.0" prefWidth="151.0">
                     <font>
                         <Font name="Minecraft Regular" size="12.0" />
                     </font></TextField>
-                <Label alignment="CENTER" layoutX="788.0" layoutY="98.0" text="Columns: ">
+                <Label alignment="CENTER" layoutX="698.0" layoutY="100.0" text="Columns: ">
                     <font>
                         <Font name="Minecraft Regular" size="18.0" />
                     </font>
                 </Label>
-                <TextField fx:id="txtCols" alignment="CENTER" layoutX="608.0" layoutY="98.0" prefHeight="40.0" prefWidth="151.0">
+                <TextField fx:id="txtCols" alignment="CENTER" layoutX="518.0" layoutY="100.0" prefHeight="40.0" prefWidth="151.0">
                     <font>
                         <Font name="Minecraft Regular" size="12.0" />
                     </font></TextField>
-                <Button fx:id="btnCreateLand" alignment="CENTER" layoutX="1102.0" layoutY="89.0" mnemonicParsing="false" onAction="#createLand" prefHeight="40.0" prefWidth="150.0" text="Create Land">
+                <Button fx:id="btnCreateLand" alignment="CENTER" layoutX="1012.0" layoutY="91.0" mnemonicParsing="false" onAction="#createLand" prefHeight="40.0" prefWidth="150.0" text="Create Land">
                     <font>
                         <Font name="Minecraft Regular" size="14.0" />
                     </font>
                 </Button>
-                <Button fx:id="btnClearLand" alignment="CENTER" layoutX="1298.0" layoutY="88.0" mnemonicParsing="false" onAction="#clearLand" prefHeight="40.0" prefWidth="150.0" text="Clear Land">
+                <Button fx:id="btnClearLand" alignment="CENTER" layoutX="1208.0" layoutY="90.0" mnemonicParsing="false" onAction="#clearLand" prefHeight="40.0" prefWidth="150.0" text="Clear Land">
                     <font>
                         <Font name="Minecraft Regular" size="14.0" />
                     </font>
                 </Button>
-            <Button layoutX="1486.0" layoutY="89.0" mnemonicParsing="false" onAction="#minePit" prefHeight="40.0" prefWidth="150.0" text="Mine pit">
+            <Button layoutX="1396.0" layoutY="91.0" mnemonicParsing="false" onAction="#minePit" prefHeight="40.0" prefWidth="150.0" text="Mine pit">
                <font>
                   <Font name="Minecraft Regular" size="14.0" />
                </font></Button>
-            <RadioButton fx:id="radioBtn5" layoutX="553.0" layoutY="170.0" mnemonicParsing="false" onAction="#handleRadioButtonAction" text="5" />
-            <RadioButton fx:id="radioBtn6" layoutX="667.0" layoutY="170.0" mnemonicParsing="false" onAction="#handleRadioButtonAction" text="6" />
-            <RadioButton fx:id="radioBtn7" layoutX="771.0" layoutY="170.0" mnemonicParsing="false" onAction="#handleRadioButtonAction" text="7" />
+            <RadioButton fx:id="radioBtn5" layoutX="108.0" layoutY="154.0" mnemonicParsing="false" onAction="#handleRadioButtonAction" text="5">
+               <font>
+                  <Font name="Minecraft Regular" size="24.0" />
+               </font></RadioButton>
+            <RadioButton fx:id="radioBtn6" layoutX="222.0" layoutY="154.0" mnemonicParsing="false" onAction="#handleRadioButtonAction" text="6">
+               <font>
+                  <Font name="Minecraft Regular" size="24.0" />
+               </font></RadioButton>
+            <RadioButton fx:id="radioBtn7" layoutX="326.0" layoutY="154.0" mnemonicParsing="false" onAction="#handleRadioButtonAction" text="7">
+               <font>
+                  <Font name="Minecraft Regular" size="24.0" />
+               </font></RadioButton>
 
             </children>
         </AnchorPane>
