@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
@@ -15,52 +17,68 @@
         </VBox>
     </bottom>
     <top>
-        <AnchorPane prefHeight="220.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="235.0" prefWidth="1920.0" style="-fx-background-color: #5CCBE3;" BorderPane.alignment="CENTER">
             <children>
-                <Label alignment="CENTER" layoutX="447.0" layoutY="100.0" text="Rows: ">
+                <Label alignment="CENTER" layoutX="403.0" layoutY="59.0" text="Rows: ">
                     <font>
                         <Font name="Minecraft Regular" size="18.0" />
                     </font>
                 </Label>
-                <TextField fx:id="txtRows" alignment="CENTER" layoutX="808.0" layoutY="100.0" prefHeight="40.0" prefWidth="151.0">
+                <TextField fx:id="txtRows" alignment="CENTER" layoutX="474.0" layoutY="126.0" prefHeight="40.0" prefWidth="170.0">
                     <font>
                         <Font name="Minecraft Regular" size="12.0" />
                     </font></TextField>
-                <Label alignment="CENTER" layoutX="698.0" layoutY="100.0" text="Columns: ">
+                <Label alignment="CENTER" layoutX="370.0" layoutY="126.0" text="Columns: ">
                     <font>
                         <Font name="Minecraft Regular" size="18.0" />
                     </font>
                 </Label>
-                <TextField fx:id="txtCols" alignment="CENTER" layoutX="518.0" layoutY="100.0" prefHeight="40.0" prefWidth="151.0">
+                <TextField fx:id="txtCols" alignment="CENTER" layoutX="474.0" layoutY="59.0" prefHeight="40.0" prefWidth="170.0">
                     <font>
                         <Font name="Minecraft Regular" size="12.0" />
                     </font></TextField>
-                <Button fx:id="btnCreateLand" alignment="CENTER" layoutX="1012.0" layoutY="91.0" mnemonicParsing="false" onAction="#createLand" prefHeight="40.0" prefWidth="150.0" text="Create Land">
+                <Button fx:id="btnCreateLand" alignment="CENTER" layoutX="721.0" layoutY="62.0" mnemonicParsing="false" onAction="#createLand" prefHeight="40.0" prefWidth="150.0" text="Create Land">
                     <font>
                         <Font name="Minecraft Regular" size="14.0" />
                     </font>
                 </Button>
-                <Button fx:id="btnClearLand" alignment="CENTER" layoutX="1208.0" layoutY="90.0" mnemonicParsing="false" onAction="#clearLand" prefHeight="40.0" prefWidth="150.0" text="Clear Land">
+                <Button fx:id="btnClearLand" alignment="CENTER" layoutX="720.0" layoutY="125.0" mnemonicParsing="false" onAction="#clearLand" prefHeight="40.0" prefWidth="150.0" text="Clear Land">
                     <font>
                         <Font name="Minecraft Regular" size="14.0" />
                     </font>
                 </Button>
-            <Button layoutX="1396.0" layoutY="91.0" mnemonicParsing="false" onAction="#minePit" prefHeight="40.0" prefWidth="150.0" text="Mine pit">
+            <Button layoutX="890.0" layoutY="124.0" mnemonicParsing="false" onAction="#minePit" prefHeight="40.0" prefWidth="150.0" text="Mine pit">
                <font>
                   <Font name="Minecraft Regular" size="14.0" />
                </font></Button>
-            <RadioButton fx:id="radioBtn5" layoutX="108.0" layoutY="154.0" mnemonicParsing="false" onAction="#handleRadioButtonAction" text="5">
+            <RadioButton fx:id="radioBtn5" layoutX="1147.0" layoutY="28.0" mnemonicParsing="false" onAction="#handleRadioButtonAction" text="5">
                <font>
                   <Font name="Minecraft Regular" size="24.0" />
                </font></RadioButton>
-            <RadioButton fx:id="radioBtn6" layoutX="222.0" layoutY="154.0" mnemonicParsing="false" onAction="#handleRadioButtonAction" text="6">
+            <RadioButton fx:id="radioBtn6" layoutX="1230.0" layoutY="28.0" mnemonicParsing="false" onAction="#handleRadioButtonAction" text="6">
                <font>
                   <Font name="Minecraft Regular" size="24.0" />
                </font></RadioButton>
-            <RadioButton fx:id="radioBtn7" layoutX="326.0" layoutY="154.0" mnemonicParsing="false" onAction="#handleRadioButtonAction" text="7">
+            <RadioButton fx:id="radioBtn7" layoutX="1318.0" layoutY="28.0" mnemonicParsing="false" onAction="#handleRadioButtonAction" text="7">
                <font>
                   <Font name="Minecraft Regular" size="24.0" />
                </font></RadioButton>
+            <ImageView fitHeight="278.0" fitWidth="259.0" layoutX="74.0" layoutY="-60.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../../Miner.gif" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="220.0" fitWidth="329.0" layoutX="1534.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../excavator.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="890.0" layoutY="65.0" mnemonicParsing="false" onAction="#calculateProfit" prefHeight="40.0" prefWidth="150.0" text="Calculate">
+               <font>
+                  <Font name="Minecraft Regular" size="14.0" />
+               </font>
+            </Button>
+           
 
             </children>
         </AnchorPane>

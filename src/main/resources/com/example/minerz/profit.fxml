@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="255.0" prefWidth="457.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView layoutX="49.0" layoutY="48.0" prefHeight="160.0" prefWidth="360.0">
+         <columns>
+            <TableColumn prefWidth="75.0" text="Date">
+               <cellValueFactory>
+                  <PropertyValueFactory property="date" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="75.0" text="Amount">
+               <cellValueFactory>
+                  <PropertyValueFactory property="amount" />
+               </cellValueFactory>
+            </TableColumn>
+         </columns>
+      </TableView>
+      <Text layoutX="191.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PROFITS">
+         <font>
+            <Font name="Minecraft Regular" size="15.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
