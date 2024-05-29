@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.media.Media;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -27,7 +28,7 @@ public class Register extends Application {
         stage.getIcons().add(new Image(Register.class.getResourceAsStream("/grass.png")));
 
         Scene scene = new Scene(root, 600, 400);
-        MediaUtil.playMusic();
+        MediaUtil.getInstance().playMusic();
 
         stage.setTitle("Register");
         stage.setScene(scene);

@@ -85,14 +85,17 @@ public class LoginController {
         String username = loginUserInput.getText();
         String password = loginPassInput.getText();
         boolean authenticated = authenticate(username, password);
+
+        MediaUtil.getInstance().playSoundEffect();
+
         if (authenticated) {
+            MediaUtil.getInstance().stopMusic();
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("land.fxml"));
                 Parent root = loader.load();
                 Stage stage = new Stage();
                 stage.getIcons().add(new Image(Login.class.getResourceAsStream("/grass.png")));
                 stage.setScene(new Scene(root));
-                stage.setTitle("Watchlist");
                 stage.setTitle("Lerch-Grossman");
                 stage.setMaximized(true);
                 stage.show();

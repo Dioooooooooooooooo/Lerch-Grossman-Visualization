@@ -45,10 +45,13 @@
                         <Font name="Minecraft Regular" size="14.0" />
                     </font>
                 </Button>
-            <Button layoutX="1486.0" layoutY="89.0" mnemonicParsing="false" onAction="#minePit" prefHeight="39.0" prefWidth="97.0" text="Mine pit" />
-            <RadioButton fx:id="radioBtn5" layoutX="150.0" layoutY="151.0" mnemonicParsing="false" onAction="#handleRadioButtonAction" text="5" />
-            <RadioButton fx:id="radioBtn6" layoutX="264.0" layoutY="151.0" mnemonicParsing="false" onAction="#handleRadioButtonAction" text="6" />
-            <RadioButton fx:id="radioBtn7" layoutX="368.0" layoutY="151.0" mnemonicParsing="false" onAction="#handleRadioButtonAction" text="7" />
+            <Button layoutX="1486.0" layoutY="89.0" mnemonicParsing="false" onAction="#minePit" prefHeight="40.0" prefWidth="150.0" text="Mine pit">
+               <font>
+                  <Font name="Minecraft Regular" size="14.0" />
+               </font></Button>
+            <RadioButton fx:id="radioBtn5" layoutX="553.0" layoutY="170.0" mnemonicParsing="false" onAction="#handleRadioButtonAction" text="5" />
+            <RadioButton fx:id="radioBtn6" layoutX="667.0" layoutY="170.0" mnemonicParsing="false" onAction="#handleRadioButtonAction" text="6" />
+            <RadioButton fx:id="radioBtn7" layoutX="771.0" layoutY="170.0" mnemonicParsing="false" onAction="#handleRadioButtonAction" text="7" />
 
             </children>
         </AnchorPane>

@@ -42,10 +42,13 @@ public class RegisterController {
 
         if (username.isEmpty() || password.isEmpty()) {
             wrongLogin.setText("Details cannot be empty");
+            MediaUtil.getInstance().playSoundEffect();
         } else if (username.length() < 6) {
             wrongLogin.setText("Username too short");
+            MediaUtil.getInstance().playSoundEffect();
         } else if (password.length() < 6) {
             wrongLogin.setText("Password too short");
+            MediaUtil.getInstance().playSoundEffect();
         } else {
             String hashedPassword = PasswordUtils.hashPassword(password);
             if (hashedPassword != null) {
@@ -54,11 +57,17 @@ public class RegisterController {
                     wrongLogin.setText("Account Created");
                     inputUser.clear();
                     inputPass.clear();
+                    MediaUtil.getInstance().playSoundEffect();
+
                 } else {
                     wrongLogin.setText("Failed to register. Please try again.");
+                    MediaUtil.getInstance().playSoundEffect();
+
                 }
             } else {
                 wrongLogin.setText("Failed to hash password.");
+                MediaUtil.getInstance().playSoundEffect();
+
             }
         }
     }

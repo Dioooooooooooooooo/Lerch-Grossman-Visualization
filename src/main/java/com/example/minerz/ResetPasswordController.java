@@ -44,23 +44,31 @@ public class ResetPasswordController {
 
         if (newPassword.isEmpty() || confirmPassword.isEmpty() || username.isEmpty()) {
             resetStatus.setText("Please fill in all fields.");
+            MediaUtil.getInstance().playSoundEffect();
+
         } else if (!newPassword.equals(confirmPassword)) {
             resetStatus.setText("Passwords do not match.");
+            MediaUtil.getInstance().playSoundEffect();
+
         } else {
             boolean resetSuccessful = resetPassword(username, newPassword);
             if (resetSuccessful) {
                 resetStatus.setText("Password changed successfully.");
+                MediaUtil.getInstance().playSoundEffect();
+
             } else {
                 resetStatus.setText("Failed to change password. Please try again.");
+                MediaUtil.getInstance().playSoundEffect();
+
             }
         }
     }
 
     private boolean resetPassword(String username, String newPassword) {
-        // Hash the new password
+
         String hashedPassword = PasswordUtils.hashPassword(newPassword);
         if (hashedPassword == null) {
-            return false; // Failed to hash password
+            return false;
         }
 
         try (Connection c = Register.getConnection()) {

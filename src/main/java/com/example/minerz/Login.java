@@ -18,7 +18,7 @@ public class Login extends Application {
 
         stage.getIcons().add(new Image(Login.class.getResourceAsStream("/grass.png")));
         Scene scene = new Scene(root, 600, 400);
-        MediaUtil.playMusic();
+        MediaUtil.getInstance().playMusic();
 
         stage.setTitle("Login");
         stage.setScene(scene);

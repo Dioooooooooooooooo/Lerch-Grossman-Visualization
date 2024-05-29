@@ -21,10 +21,10 @@
             <children>
             <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
                <image>
-                  <Image url="@../../../scenery.gif" />
+                  <Image url="@../../../test.gif" />
                </image>
             </ImageView>
-                <Label layoutX="201.0" layoutY="209.0" text="PASSWORD:">
+                <Label layoutX="201.0" layoutY="228.0" text="PASSWORD:">
                     <font>
                         <Font name="Minecraft Regular" size="14.0" />
                     </font>
@@ -38,7 +38,7 @@
                     <font>
                         <Font name="Minecraft Regular" size="12.0" />
                     </font></TextField>
-                <PasswordField fx:id="loginPassInput" layoutX="201.0" layoutY="235.0" prefHeight="42.0" prefWidth="219.0">
+                <PasswordField fx:id="loginPassInput" layoutX="201.0" layoutY="254.0" prefHeight="42.0" prefWidth="219.0">
                     <font>
                         <Font name="Minecraft Regular" size="12.0" />
                     </font></PasswordField>
@@ -52,14 +52,14 @@
                     </font>
                 </Text>
                 <Label fx:id="noAccount" layoutX="207.0" layoutY="284.0" prefHeight="23.0" prefWidth="164.0" textFill="RED" />
-                <Hyperlink fx:id="backToRegister" layoutX="420.0" layoutY="14.0" onAction="#backRegister" text="Dont have an account?" textFill="RED">
+                <Hyperlink fx:id="backToRegister" layoutX="420.0" layoutY="7.0" onAction="#backRegister" text="Dont have an account?" textFill="RED">
                     <font>
                         <Font name="Minecraft Regular" size="12.0" />
                     </font>
                 </Hyperlink>
-                <Hyperlink fx:id="resetPassword" layoutX="347.0" layoutY="209.0" onAction="#setResetPassword" text="Reset Password" textFill="RED">
+                <Hyperlink fx:id="resetPassword" layoutX="478.0" layoutY="31.0" onAction="#setResetPassword" text="Reset Password" textFill="RED">
                     <font>
-                        <Font name="Calibri" size="10.0" />
+                        <Font name="Minecraft Regular" size="10.0" />
                     </font>
                 </Hyperlink>
             </children></AnchorPane>

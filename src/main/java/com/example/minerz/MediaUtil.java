@@ -6,20 +6,53 @@ import javafx.scene.media.MediaPlayer;
 import java.io.File;
 
 public class MediaUtil {
+
+    // SINGLETON
+
     private static final String MUSIC_FILE_PATH = "src/main/resources/music.mp3";
-    private static MediaPlayer mediaPlayer;
+    private static final String SOUND_EFFECT_FILE_PATH = "src/main/resources/soundeffect.mp3";
+    private static MediaUtil instance;
+    private MediaPlayer musicPlayer;
+    private MediaPlayer soundEffectPlayer;
 
-    static {
-        Media sound = new Media(new File(MUSIC_FILE_PATH).toURI().toString());
-        mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.setVolume(0.7);
+    private MediaUtil() {
+        Media music = new Media(new File(MUSIC_FILE_PATH).toURI().toString());
+        musicPlayer = new MediaPlayer(music);
+        musicPlayer.setVolume(0.7);
+
+        Media soundEffect = new Media(new File(SOUND_EFFECT_FILE_PATH).toURI().toString());
+        soundEffectPlayer = new MediaPlayer(soundEffect);
     }
 
-    public static void playMusic() {
-        mediaPlayer.play();
+    public static MediaUtil getInstance() {
+        if (instance == null) {
+            synchronized (MediaUtil.class) {
+                if (instance == null) {
+                    instance = new MediaUtil();
+                }
+            }
+        }
+        return instance;
     }
 
-    public static void stopMusic() {
-        mediaPlayer.stop();
+    public void playMusic() {
+        musicPlayer.play();
+    }
+
+    public void stopMusic() {
+        if (musicPlayer != null) {
+            musicPlayer.stop();
+        }
+    }
+
+    public void playSoundEffect() {
+        soundEffectPlayer.stop();
+        soundEffectPlayer.play();
+    }
+
+    public void stopSoundEffect() {
+        if (soundEffectPlayer != null) {
+            soundEffectPlayer.stop();
+        }
     }
 }
