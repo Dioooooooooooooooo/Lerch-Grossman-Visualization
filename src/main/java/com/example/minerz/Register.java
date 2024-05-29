@@ -4,25 +4,20 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
 import javafx.scene.image.Image;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import java.io.File;
 
 public class Register extends Application {
 
     public static final String URL = "jdbc:mysql://localhost:3306/dbminerz";
     public static final String USER = "root";
     public static final String PASS = "";
-    String musicFile = "src/main/resources/music.mp3";
-
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -32,10 +27,7 @@ public class Register extends Application {
         stage.getIcons().add(new Image(Register.class.getResourceAsStream("/grass.png")));
 
         Scene scene = new Scene(root, 600, 400);
-        Media sound = new Media(new File(musicFile).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.setVolume(0.7);
-        mediaPlayer.play();
+        MediaUtil.playMusic();
 
         stage.setTitle("Register");
         stage.setScene(scene);
@@ -68,5 +60,4 @@ public class Register extends Application {
         }
         return c;
     }
-
 }

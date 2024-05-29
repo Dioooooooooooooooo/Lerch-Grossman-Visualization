@@ -11,14 +11,14 @@ import java.io.IOException;
 
 public class Login extends Application {
 
-
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Register.class.getResource("LoginPage.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("login.fxml"));
         Parent root = fxmlLoader.load();
 
         stage.getIcons().add(new Image(Login.class.getResourceAsStream("/grass.png")));
         Scene scene = new Scene(root, 600, 400);
+        MediaUtil.playMusic();
 
         stage.setTitle("Login");
         stage.setScene(scene);
@@ -28,7 +28,4 @@ public class Login extends Application {
     public static void main(String[] args) {
         launch();
     }
-
-
-
 }

@@ -39,7 +39,7 @@
                         <Font name="Minecraft Regular" size="12.0" />
                     </font>
                 </Button>
-                <Label fx:id="wrongLogin" layoutX="195.0" layoutY="277.0" prefHeight="17.0" prefWidth="131.0" />
+                <Label fx:id="wrongLogin" layoutX="195.0" layoutY="277.0" prefHeight="17.0" prefWidth="131.0" textFill="RED" />
                 <Hyperlink fx:id="skipToLogin" layoutX="14.0" layoutY="365.0" onAction="#skip" text="Already have an account?" textFill="WHITE">
                     <font>
                         <Font name="Century" size="12.0" />
