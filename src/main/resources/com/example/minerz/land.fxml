@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.minerz.LandController">
     <bottom>
@@ -24,7 +25,7 @@
                         <Font name="Minecraft Regular" size="18.0" />
                     </font>
                 </Label>
-                <TextField fx:id="txtRows" alignment="CENTER" layoutX="474.0" layoutY="126.0" prefHeight="40.0" prefWidth="170.0">
+                <TextField fx:id="txtCols" alignment="CENTER" layoutX="474.0" layoutY="126.0" prefHeight="40.0" prefWidth="170.0">
                     <font>
                         <Font name="Minecraft Regular" size="12.0" />
                     </font></TextField>
@@ -33,7 +34,7 @@
                         <Font name="Minecraft Regular" size="18.0" />
                     </font>
                 </Label>
-                <TextField fx:id="txtCols" alignment="CENTER" layoutX="474.0" layoutY="59.0" prefHeight="40.0" prefWidth="170.0">
+                <TextField fx:id="txtRows" alignment="CENTER" layoutX="474.0" layoutY="59.0" prefHeight="40.0" prefWidth="170.0">
                     <font>
                         <Font name="Minecraft Regular" size="12.0" />
                     </font></TextField>
@@ -47,7 +48,7 @@
                         <Font name="Minecraft Regular" size="14.0" />
                     </font>
                 </Button>
-            <Button layoutX="890.0" layoutY="124.0" mnemonicParsing="false" onAction="#minePit" prefHeight="40.0" prefWidth="150.0" text="Mine pit">
+            <Button fx:id="btnMinePit" layoutX="890.0" layoutY="124.0" mnemonicParsing="false" onAction="#minePit" prefHeight="40.0" prefWidth="150.0" text="Mine pit">
                <font>
                   <Font name="Minecraft Regular" size="14.0" />
                </font></Button>
@@ -73,11 +74,21 @@
                   <Image url="@../../../excavator.png" />
                </image>
             </ImageView>
-            <Button layoutX="890.0" layoutY="65.0" mnemonicParsing="false" onAction="#calculateProfit" prefHeight="40.0" prefWidth="150.0" text="Calculate">
+            <Text layoutX="1150.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Profit:">
+               <font>
+                  <Font name="Minecraft Regular" size="20.0" />
+               </font>
+            </Text>
+            <Button alignment="CENTER" layoutX="891.0" layoutY="63.0" mnemonicParsing="false" onAction="#clearPit" prefHeight="40.0" prefWidth="150.0" text="Clear Pit">
                <font>
                   <Font name="Minecraft Regular" size="14.0" />
                </font>
             </Button>
+            <Label fx:id="profitText" layoutX="1310.0" layoutY="129.0" text="\$$$">
+               <font>
+                  <Font name="Minecraft Regular" size="22.0" />
+               </font>
+            </Label>
            
 
             </children>

@@ -17,7 +17,7 @@ import java.sql.SQLException;
 
 public class LoginController {
 
-    private static int userId;
+    public static int userId;
 
     @FXML
     private Button btnLogin;
@@ -86,6 +86,7 @@ public class LoginController {
         String password = loginPassInput.getText();
         boolean authenticated = authenticate(username, password);
 
+
         MediaUtil.getInstance().playSoundEffect();
 
         if (authenticated) {
@@ -94,11 +95,10 @@ public class LoginController {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("land.fxml"));
                 Parent root = loader.load();
-                LandController landController = loader.getController();
-                landController.setUserId(userId);
                 Stage stage = new Stage();
                 stage.getIcons().add(new Image(Login.class.getResourceAsStream("/grass.png")));
                 stage.setScene(new Scene(root));
+                MediaUtil.getInstance().playLandMusic();
                 stage.setTitle("Lerch-Grossman");
                 stage.setMaximized(true);
                 stage.show();
@@ -130,6 +130,7 @@ public class LoginController {
                 String hashedPassword = PasswordUtils.hashPassword(password);
                 if (hashedPassword != null && hashedPassword.equals(storedHashedPassword)) {
                     userId = resultSet.getInt("id");
+                    System.out.println(userId);
                     return true;
                 }
             }

@@ -24,7 +24,7 @@ public class Land extends Application {
         URL cursorImageUrl = getClass().getResource("/cursor.png");
         Image cursorImage = new Image(cursorImageUrl.toString());
         scene.setCursor(new ImageCursor(cursorImage));
-
+        MediaUtil.getInstance().playLandMusic();
         stage.setTitle("Miners");
         stage.setScene(scene);
         stage.setMaximized(true);

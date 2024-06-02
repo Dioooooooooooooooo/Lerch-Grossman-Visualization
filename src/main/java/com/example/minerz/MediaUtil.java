@@ -14,10 +14,13 @@ public class MediaUtil {
     private static final String SOUND_EFFECT_FILE_PATH = "src/main/resources/soundeffect.mp3";
     private static final String DIRT_FILE_PATH = "src/main/resources/dirt.mp3";
 
+    private static final String LAND_MUSIC = "src/main/resources/LandMusic.mp3";
+
     private static MediaUtil instance;
     private MediaPlayer musicPlayer;
     private MediaPlayer soundEffectPlayer;
     private MediaPlayer dirtSoundPlayer;
+    private MediaPlayer landMusicPlayer;
 
     private MediaUtil() {
         Media music = new Media(new File(MUSIC_FILE_PATH).toURI().toString());
@@ -31,6 +34,10 @@ public class MediaUtil {
         Media dirtSound = new Media(new File(DIRT_FILE_PATH).toURI().toString());
         dirtSoundPlayer = new MediaPlayer(dirtSound);
         dirtSoundPlayer.setStartTime(Duration.seconds(3.3));
+
+        Media landMusic = new Media(new File(LAND_MUSIC).toURI().toString());
+        landMusicPlayer = new MediaPlayer(landMusic);
+        landMusicPlayer.setVolume(0.7);
     }
 
     public static MediaUtil getInstance() {
@@ -73,6 +80,16 @@ public class MediaUtil {
     public void stopDirt() {
         if (dirtSoundPlayer != null) {
             dirtSoundPlayer.stop();
+        }
+    }
+
+    public void playLandMusic() {
+        landMusicPlayer.play();
+    }
+
+    public void stopLandMusic() {
+        if (landMusicPlayer != null) {
+            landMusicPlayer.stop();
         }
     }
 }
